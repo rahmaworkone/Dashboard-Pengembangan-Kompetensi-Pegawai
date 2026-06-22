@@ -16,6 +16,10 @@ st.markdown("""
     #020617;
 }
 
+[data-testid="stSidebarNav"] {
+    display: none;
+}
+
 section[data-testid="stSidebar"]{
     min-width: 220px !important;
     max-width: 220px !important;
