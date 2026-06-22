@@ -92,6 +92,33 @@ section[data-testid="stSidebar"]{
     padding:14px 18px;
     color:white;
 }
+
+.filter-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#8B5CF6;
+    font-size:28px;
+    font-weight:700;
+}
+
+.filter-title .material-icons{
+    font-size:28px;
+}
+
+.filter-card{
+    background:rgba(15,23,42,.75);
+
+    border:1px solid rgba(99,102,241,.2);
+
+    border-radius:24px;
+
+    padding:24px;
+
+    box-shadow:
+        0 0 30px rgba(59,130,246,.08);
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -114,7 +141,19 @@ def tambah_program():
     st.button("Simpan")
 
 with st.sidebar:
-    st.markdown("## ⚙️ FILTER")
+    st.markdown("""
+    <div class="filter-card">
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="filter-title">
+        <span class="material-icons">tune</span>
+        FILTER
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("""
+    </div>
+    """, unsafe_allow_html=True)
     jenis = st.selectbox("Jenis Program",["Semua"]+list(df["Jenis"].unique()))
     peny = st.selectbox("Penyelenggara",["Semua"]+list(df["Penyelenggara"].unique()))
     status = st.selectbox("Status",["Semua"]+list(df["Status"].unique()))
