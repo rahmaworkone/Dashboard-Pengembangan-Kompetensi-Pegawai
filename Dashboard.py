@@ -19,7 +19,16 @@ st.markdown("""
 ========================= */
 
 .stApp{
-    background:#F1F5F9;
+    background:
+    radial-gradient(circle at top left,
+    rgba(139,92,246,.18),
+    transparent 35%),
+
+    radial-gradient(circle at top right,
+    rgba(14,165,233,0.15),
+    transparent 35%),
+
+    #020617;
 }
 
 .block-container{
@@ -35,24 +44,22 @@ st.markdown("""
 ========================= */
 
 .title-box{
-    background:white;
-    border-radius:24px;
-    padding:24px 32px;
-    text-align:center;
-    margin-bottom:24px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(15,23,42,.95),
+        rgba(30,41,59,.95)
+    );
+
+    border:1px solid rgba(139,92,246,.15);
 
     box-shadow:
-        0px 4px 20px rgba(0,0,0,0.06);
+        0 0 40px rgba(59,130,246,.08);
 }
 
 .title-box h1{
-    line-height:1.25;
-    color:#1E3A8A;
-    font-size:26px;
-    font-weight:700;
-
-    line-height:1.35;
-    margin:0;
+    color:white;
 }
 
 /* =========================
@@ -60,34 +67,25 @@ st.markdown("""
 ========================= */
 
 .metric-card{
-    background:white;
 
-    height:160px;
-    width:100%;
-    border-radius:20px;
+    border:none;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    height:130px;
+
+    border-radius:22px;
+
+    color:white;
 
     box-shadow:
-        0px 4px 15px rgba(0,0,0,0.06);
-
-    border:1px solid #E2E8F0;
+        0 0 30px rgba(0,0,0,.25);
 }
 
 .metric-title{
-    color:#64748B;
-    font-size:14px;
-    font-weight:600;
-    margin-bottom:10px;
+    color:#CBD5E1;
 }
 
 .metric-value{
-    color:#2563EB;
-    font-size:40px;
-    font-weight:700;
+    color:white;
 }
 
 /* =========================
@@ -117,18 +115,16 @@ st.markdown("""
 ========================= */
 
 .program-card{
-    background:white;
 
-    border-radius:20px;
+    background:
+    rgba(15,23,42,.75);
 
-    padding:18px 24px;
+    border:
+    1px solid rgba(99,102,241,.15);
 
-    margin-bottom:14px;
+    border-radius:18px;
 
-    border:1px solid #E2E8F0;
-
-    box-shadow:
-        0px 4px 15px rgba(0,0,0,0.06);
+    transition:.2s;
 }
 
 .program-card h3{
@@ -148,13 +144,36 @@ st.markdown("""
     line-height:1.8;
 }
 
+.glass-card{
+    background:rgba(15,23,42,0.75);
+
+    border:1px solid rgba(99,102,241,0.25);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:22px;
+
+    box-shadow:
+    0 0 30px rgba(59,130,246,.08);
+
+    padding:20px;
+}
+
 /* =========================
    SIDEBAR
 ========================= */
 
 section[data-testid="stSidebar"]{
-    background:white;
-    border-right:1px solid #E2E8F0;
+
+    background:
+    linear-gradient(
+        180deg,
+        #020617,
+        #0F172A
+    );
+
+    border-right:
+    1px solid rgba(139,92,246,.2);
 }
 
 section[data-testid="stSidebar"] .block-container{
@@ -163,8 +182,10 @@ section[data-testid="stSidebar"] .block-container{
     padding-right:1rem;
 }
 
-section[data-testid="stSidebar"] h1{
-    color:#1E293B;
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3{
+    color:white;
 }
 
 /* =========================
@@ -172,6 +193,8 @@ section[data-testid="stSidebar"] h1{
 ========================= */
 
 div[data-baseweb="select"]{
+    background:#111827;
+    border:1px solid rgba(99,102,241,.25);
     border-radius:14px;
 }
 
@@ -191,11 +214,37 @@ div.stButton > button{
 
     transition:0.2s;
 }
+.program-card:hover{
 
+    transform:translateY(-2px);
+
+    border-color:#8B5CF6;
+
+    box-shadow:
+    0 0 25px rgba(139,92,246,.15);
+}
 div.stButton > button:hover{
     transform:translateY(-2px);
 }
 
+.add-program-btn{
+
+    position:fixed;
+
+    left:25px;
+
+    bottom:25px;
+
+    width:250px;
+
+    z-index:9999;
+}
+with st.sidebar:
+    if st.button(
+        "➕ TAMBAH PROGRAM",
+        use_container_width=True
+    ):
+        tambah_program()
 /* =========================
    METRIC STREAMLIT
 ========================= */
@@ -220,6 +269,17 @@ div.stButton > button:hover{
     background:white;
     border-radius:20px;
     border:1px solid #E2E8F0;
+}
+
+.sidebar-title{
+
+    color:white;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:20px;
 }
 
 </style>
@@ -280,7 +340,11 @@ df = pd.DataFrame(data)
 
 with st.sidebar:
 
-    st.markdown("### 🔎 Filter Program")
+    st.markdown("""
+    <div class="sidebar-title">
+        ⚙ FILTER
+    </div>
+    """, unsafe_allow_html=True)
 
     jenis_filter = st.selectbox(
         "Jenis Program",
@@ -296,6 +360,15 @@ with st.sidebar:
         "Status",
         ["Semua"] + list(df["Status"].unique())
     )
+
+    st.markdown("<div style='height:300px'></div>",
+                unsafe_allow_html=True)
+
+    if st.button(
+        "➕ TAMBAH PROGRAM",
+        use_container_width=True
+    ):
+        tambah_program()
 
 # =====================================================
 # FILTER DATA
@@ -423,6 +496,33 @@ st.markdown(
 
 left, right = st.columns([1,3])
 
+st.markdown(f"""
+<div class="status-card">
+    <span class="dot purple"></span>
+    Sedang Dibuka
+    <span class="count">
+        {jumlah}
+    </span>
+</div>
+""", unsafe_allow_html=True)
+
+.status-card{
+
+    background:#111827;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    margin-bottom:12px;
+
+    color:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
 with left:
 
     st.markdown("""
@@ -468,18 +568,21 @@ with right:
     )
 
     fig.update_layout(
-    height=350,
-    showlegend=False,
-    paper_bgcolor="white",
-    plot_bgcolor="white",
-    font_color="#334155",
-    margin=dict(
-        l=20,
-        r=20,
-        t=30,
-        b=20
-    ))
 
+    paper_bgcolor="rgba(0,0,0,0)",
+
+    plot_bgcolor="rgba(0,0,0,0)",
+
+    font_color="white",
+
+    xaxis=dict(
+        showgrid=False
+    ),
+
+    yaxis=dict(
+        gridcolor="rgba(255,255,255,.1)"
+    )
+)
     fig.update_traces(
     marker_color="#2563EB"
     )
@@ -522,22 +625,3 @@ for _, row in filtered.iterrows():
             key=f"detail_{row['Program']}",
             use_container_width=True
         )
-
-# =====================================================
-# TOMBOL TAMBAH PROGRAM
-# =====================================================
-
-st.markdown(
-    "<div style='height:16px'></div>",
-    unsafe_allow_html=True
-)
-
-col1, col2, col3 = st.columns([1,3,1])
-
-with col2:
-
-    if st.button(
-        "➕ TAMBAH PROGRAM",
-        use_container_width=True
-    ):
-        tambah_program()
