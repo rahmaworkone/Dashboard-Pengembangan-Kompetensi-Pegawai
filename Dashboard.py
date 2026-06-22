@@ -333,29 +333,29 @@ def tambah_program():
 # HEADER
 # =====================================================
 
-st.markdown("""
-<div class="title-box">
-<h1>
-DASHBOARD PENGEMBANGAN KOMPETENSI PEGAWAI
-<br>
-BIRO KEUANGAN DAN BARANG MILIK NEGARA
-</h1>
-</div>
-""", unsafe_allow_html=True)
+with right_col:
+
+    st.markdown("""
+    <div class="title-box">
+    <h1>
+    DASHBOARD PENGEMBANGAN KOMPETENSI PEGAWAI
+    <br>
+    BIRO KEUANGAN DAN BARANG MILIK NEGARA
+    </h1>
+    </div>
+    """, unsafe_allow_html=True)
 
 # =====================================================
 # LAYOUT
 # =====================================================
 
-filter_col, main_col = st.columns(
-    [1.15, 4]
-)
+left_col, right_col = st.columns([1.15,4])
 
 # =====================================================
 # FILTER PANEL
 # =====================================================
 
-with filter_col:
+with left_col:
 
     filter_box = st.container(border=True)
 
