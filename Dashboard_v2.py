@@ -29,12 +29,15 @@ section[data-testid="stSidebar"]{
     background:rgba(15,23,42,.9);
     border:1px solid rgba(99,102,241,.25);
     border-radius:22px;
-    padding:24px;
+    padding:20px;
     text-align:center;
     margin-bottom:20px;
+    min-height:90px;
 }
 
 .title-box h1{
+    font-size:28px;
+    line-height:1.4;
     color:white;
     margin:0;
 }
