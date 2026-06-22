@@ -39,12 +39,23 @@ section[data-testid="stSidebar"]{
         #020617,
         #0F172A
     );
+
+    border-right:
+    1px solid rgba(99,102,241,.2);
 }
 
 section[data-testid="stSidebar"] .block-container{
-    padding-top:12px;
-    padding-left:12px;
-    padding-right:12px;
+
+    background:
+    rgba(15,23,42,.55);
+
+    border:
+    1px solid rgba(99,102,241,.15);
+
+    border-radius:24px;
+
+    padding:20px;
+    margin:12px;
 }
 
 .block-container{
@@ -179,16 +190,9 @@ def tambah_program():
     st.button("Simpan")
 
 with st.sidebar:
-
     st.markdown("""
-    <div class="filter-card">
-
-        <div class="filter-title">
-            <span class="material-icons">tune</span>
-            FILTER
-        </div>
-
-    """, unsafe_allow_html=True)
+    ## 🎛 FILTER
+    """)
 
     jenis = st.selectbox(
         "Jenis Program",
