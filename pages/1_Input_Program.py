@@ -1,72 +1,45 @@
 import streamlit as st
-import pandas as pd
 
-st.title("➕ Input Program")
+st.set_page_config(
+    page_title="Input Program",
+    layout="wide"
+)
 
-with st.form("form_program"):
+st.title("Input Program Pengembangan Kompetensi")
 
-    nama_program = st.text_input("Nama Program")
+nama = st.text_input("Nama Program")
 
-    jenis_program = st.selectbox(
-        "Jenis Program",
-        [
-            "Pelatihan",
-            "Sertifikasi",
-            "Webinar",
-            "Workshop",
-            "Beasiswa"
-        ]
-    )
+jenis = st.selectbox(
+    "Jenis Program",
+    [
+        "Pelatihan",
+        "Sertifikasi",
+        "Beasiswa"
+    ]
+)
 
-    bidang = st.selectbox(
-        "Bidang Kompetensi",
-        [
-            "Data Digital",
-            "Keuangan",
-            "SDM",
-            "Kearsipan",
-            "Administrasi",
-            "Kepemimpinan"
-        ]
-    )
+penyelenggara = st.text_input("Penyelenggara")
 
-    penyelenggara = st.text_input("Penyelenggara")
+metode = st.selectbox(
+    "Metode",
+    [
+        "Online",
+        "Offline",
+        "Hybrid"
+    ]
+)
 
-    metode = st.selectbox(
-        "Metode",
-        ["Online","Offline","Hybrid"]
-    )
+tanggal_mulai = st.date_input("Tanggal Mulai")
+tanggal_selesai = st.date_input("Tanggal Selesai")
 
-    status = st.selectbox(
-        "Status",
-        ["Dibuka","Akan Dibuka","Ditutup"]
-    )
+link = st.text_input("Link Pendaftaran")
 
-    deadline = st.date_input("Deadline")
+deskripsi = st.text_area("Deskripsi")
 
-    link = st.text_input("Link Informasi")
+brosur = st.file_uploader(
+    "Upload Brosur",
+    type=["pdf","jpg","png"]
+)
 
-    submit = st.form_submit_button("Simpan")
-
-if submit:
-
-    df = pd.read_csv("data/program.csv")
-
-    data_baru = pd.DataFrame(
-        [{
-            "nama_program":nama_program,
-            "jenis_program":jenis_program,
-            "bidang_kompetensi":bidang,
-            "penyelenggara":penyelenggara,
-            "metode":metode,
-            "status":status,
-            "deadline":deadline,
-            "link":link
-        }]
-    )
-
-    df = pd.concat([df,data_baru],ignore_index=True)
-
-    df.to_csv("data/program.csv",index=False)
-
+if st.button("Simpan"):
     st.success("Program berhasil disimpan")
