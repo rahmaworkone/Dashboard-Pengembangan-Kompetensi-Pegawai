@@ -39,7 +39,7 @@ st.markdown("""
 .title-box{
     background:white;
     border-radius:20px;
-    padding:25px;
+    padding:30px;
     text-align:center;
     margin-bottom:25px;
     box-shadow:0 4px 12px rgba(0,0,0,0.08);
@@ -47,14 +47,17 @@ st.markdown("""
 
 .title-box h1{
     color:#1E3A8A;
-    font-size:34px;
-    margin-bottom:5px;
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:8px;
 }
 
 .title-box h2{
-    color:#64748B;
-    font-size:18px;
-    font-weight:500;
+    color:#1E3A8A;
+    font-size:28px;
+    font-weight:700;
+    margin-top:0;
+    margin-bottom:0;
 }
 
 /* =========================
