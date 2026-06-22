@@ -268,8 +268,11 @@ if status_filter != "Semua":
 
 st.markdown("""
 <div class="title-box">
-<h1>DASHBOARD PENGEMBANGAN KOMPETENSI PEGAWAI</h1>
-<h1>BIRO KEUANGAN DAN BARANG MILIK NEGARA</h1>
+    <h1>
+        DASHBOARD PENGEMBANGAN KOMPETENSI PEGAWAI
+        <br>
+        BIRO KEUANGAN DAN BARANG MILIK NEGARA
+    </h1>
 </div>
 """, unsafe_allow_html=True)
 
