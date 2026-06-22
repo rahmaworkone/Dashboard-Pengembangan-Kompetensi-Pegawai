@@ -16,6 +16,11 @@ st.markdown("""
     #020617;
 }
 
+section[data-testid="stSidebar"]{
+    min-width: 220px !important;
+    max-width: 220px !important;
+}
+
 .block-container{
     padding-top:1rem;
     max-width:1450px;
