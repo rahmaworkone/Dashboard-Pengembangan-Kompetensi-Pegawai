@@ -15,26 +15,19 @@ st.markdown("""
 <style>
 
 /* =========================
-   BACKGROUND APP
+   APP
 ========================= */
 
 .stApp{
-    background: linear-gradient(
-        135deg,
-        #0F172A 0%,
-        #111827 50%,
-        #1E1B4B 100%
-    );
+    background:#F1F5F9;
 }
 
-/* =========================
-   CONTAINER
-========================= */
-
 .block-container{
-    padding-top:1rem;
+    padding-top:1.2rem;
+    padding-bottom:2rem;
     padding-left:2rem;
     padding-right:2rem;
+    max-width:1400px;
 }
 
 /* =========================
@@ -42,49 +35,81 @@ st.markdown("""
 ========================= */
 
 .title-box{
-    background:#1E293B;
-    border:1px solid rgba(255,255,255,0.1);
-    border-radius:20px;
-    padding:30px;
+    background:white;
+    border-radius:24px;
+    padding:24px 32px;
+    text-align:center;
+    margin-bottom:24px;
+
+    box-shadow:
+        0px 4px 20px rgba(0,0,0,0.06);
 }
 
 .title-box h1{
-    color:#FFFFFF;
+    line-height:1.25;
+    color:#1E3A8A;
+    font-size:26px;
+    font-weight:700;
+
+    line-height:1.35;
+    margin:0;
 }
 
 /* =========================
-   CARD STATISTIK
+   METRIC CARD
 ========================= */
 
 .metric-card{
-    background:linear-gradient(
-        135deg,
-        #8B5CF6,
-        #3B82F6
-    );
-    border:none;
+    background:white;
+
+    height:160px;
+    width:100%;
     border-radius:20px;
-    padding:25px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:
+        0px 4px 15px rgba(0,0,0,0.06);
+
+    border:1px solid #E2E8F0;
 }
 
 .metric-title{
-    color:white;
+    color:#64748B;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:10px;
 }
 
 .metric-value{
-    color:white;
+    color:#2563EB;
+    font-size:40px;
+    font-weight:700;
 }
 
 /* =========================
-   STATUS CARD
+   STATUS
 ========================= */
 
 .small-status{
     background:white;
-    border-radius:15px;
+
+    border-radius:20px;
+
     padding:20px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
     border:1px solid #E2E8F0;
+
+    box-shadow:
+        0px 4px 15px rgba(0,0,0,0.06);
+}
+
+.small-status h3{
+    margin:0;
+    color:#334155;
 }
 
 /* =========================
@@ -92,17 +117,35 @@ st.markdown("""
 ========================= */
 
 .program-card{
-    background:#1E293B;
-    border:1px solid rgba(255,255,255,0.08);
+    background:white;
+
     border-radius:20px;
+
+    padding:18px 24px;
+
+    margin-bottom:14px;
+
+    border:1px solid #E2E8F0;
+
+    box-shadow:
+        0px 4px 15px rgba(0,0,0,0.06);
 }
 
 .program-card h3{
-    color:white;
+    margin-top:0;
+    margin-bottom:8px;
+
+    color:#0F172A;
+
+    font-size:22px;
 }
 
 .program-card p{
-    color:#CBD5E1;
+    margin:0;
+
+    color:#64748B;
+
+    line-height:1.8;
 }
 
 /* =========================
@@ -110,34 +153,18 @@ st.markdown("""
 ========================= */
 
 section[data-testid="stSidebar"]{
-    background:#111827;
-    border-right:1px solid rgba(255,255,255,0.1);
+    background:white;
+    border-right:1px solid #E2E8F0;
 }
 
-/* =========================
-   BUTTON
-========================= */
-
-div.stButton > button{
-    background:linear-gradient(
-    135deg,
-    #8B5CF6,
-    #06B6D4
-);
-    color:white;
-    border:none;
-    border-radius:15px;
-    height:50px;
-    font-weight:600;
+section[data-testid="stSidebar"] .block-container{
+    padding-top:1.5rem;
+    padding-left:1rem;
+    padding-right:1rem;
 }
 
-div.stButton > button:hover{
-    background:linear-gradient(
-    135deg,
-    #7C3AED,
-    #0891B2
-);
-    color:white;
+section[data-testid="stSidebar"] h1{
+    color:#1E293B;
 }
 
 /* =========================
@@ -145,17 +172,54 @@ div.stButton > button:hover{
 ========================= */
 
 div[data-baseweb="select"]{
-    border-radius:15px;
+    border-radius:14px;
 }
 
 /* =========================
-   PLOTLY CHART
+   BUTTON
+========================= */
+
+div.stButton > button{
+
+    border:none;
+
+    border-radius:14px;
+
+    height:52px;
+
+    font-weight:600;
+
+    transition:0.2s;
+}
+
+div.stButton > button:hover{
+    transform:translateY(-2px);
+}
+
+/* =========================
+   METRIC STREAMLIT
+========================= */
+
+[data-testid="stMetric"]{
+    background:white;
+
+    border-radius:16px;
+
+    padding:12px;
+
+    border:1px solid #E2E8F0;
+
+    margin-bottom:10px;
+}
+
+/* =========================
+   PLOTLY
 ========================= */
 
 .js-plotly-plot{
     background:white;
-    border-radius:15px;
-    padding:10px;
+    border-radius:20px;
+    border:1px solid #E2E8F0;
 }
 
 </style>
@@ -216,7 +280,7 @@ df = pd.DataFrame(data)
 
 with st.sidebar:
 
-    st.header("Filter")
+    st.markdown("### 🔎 Filter Program")
 
     jenis_filter = st.selectbox(
         "Jenis Program",
@@ -348,7 +412,10 @@ with c4:
     </div>
     """, unsafe_allow_html=True)
 
-st.write("")
+st.markdown(
+    "<div style='height:16px'></div>",
+    unsafe_allow_html=True
+)
 
 # =====================================================
 # CHART
@@ -403,13 +470,18 @@ with right:
     fig.update_layout(
     height=350,
     showlegend=False,
-    paper_bgcolor="#1E293B",
-    plot_bgcolor="#1E293B",
-    font_color="white"
+    paper_bgcolor="white",
+    plot_bgcolor="white",
+    font_color="#334155"
+    margin=dict(
+        l=20,
+        r=20,
+        t=30,
+        b=20
     )
 
     fig.update_traces(
-    marker_color="#8B5CF6"
+    marker_color="#2563EB"
     )
     
     st.plotly_chart(
@@ -455,8 +527,10 @@ for _, row in filtered.iterrows():
 # TOMBOL TAMBAH PROGRAM
 # =====================================================
 
-st.write("")
-st.write("")
+st.markdown(
+    "<div style='height:16px'></div>",
+    unsafe_allow_html=True
+)
 
 col1, col2, col3 = st.columns([1,3,1])
 
