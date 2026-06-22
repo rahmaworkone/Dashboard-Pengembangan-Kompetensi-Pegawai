@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.set_page_config(page_title="Dashboard Kompetensi", layout="wide")
+st.set_page_config(page_title="Dashboard Kompetensi", layout="wide",initial_sidebar_state="expanded")
 
 # =========================
 # CSS
@@ -18,6 +18,10 @@ st.markdown("""
 
 [data-testid="stSidebarNav"] {
     display: none;
+}
+
+[data-testid="collapsedControl"]{
+    display:none;
 }
 
 section[data-testid="stSidebar"]{
