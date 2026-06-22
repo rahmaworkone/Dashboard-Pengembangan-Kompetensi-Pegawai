@@ -29,16 +29,11 @@ st.markdown("""
     margin-bottom:20px;
 }
 
-.title-box h1{
-    font-size:32px;
-    margin:0;
-}
-
 .metric-card{
     background:#bdbdbd;
     padding:20px;
     text-align:center;
-    border-radius:5px;
+    border-radius:8px;
 }
 
 .metric-title{
@@ -54,25 +49,32 @@ st.markdown("""
 .program-card{
     background:#bdbdbd;
     padding:20px;
-    border-radius:5px;
+    border-radius:8px;
     margin-bottom:15px;
 }
 
 .small-status{
-    background:#9d9d9d;
+    background:#bdbdbd;
     padding:15px;
-    border-radius:5px;
+    border-radius:8px;
 }
 
 div[data-testid="stSidebar"]{
     background-color:#e5e5e5;
 }
 
+div.stButton > button {
+    height:60px;
+    border-radius:15px;
+    font-size:20px;
+    font-weight:600;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
 # =====================================================
-# DUMMY DATA
+# DATA DUMMY
 # =====================================================
 
 data = {
@@ -106,13 +108,63 @@ data = {
         "Ditutup",
         "Sedang Dibuka"
     ],
-    "Penyelenggara":[
-        "BPSDM","Dicoding","LPDP","LKPP",
-        "Kemenkeu","Tableau","BNSP","Komdigi"
+    "Penyelenggara": [
+        "BPSDM",
+        "Dicoding",
+        "LPDP",
+        "LKPP",
+        "Kemenkeu",
+        "Tableau",
+        "BNSP",
+        "Komdigi"
     ]
 }
 
 df = pd.DataFrame(data)
+
+# =====================================================
+# SIDEBAR FILTER
+# =====================================================
+
+with st.sidebar:
+
+    st.header("Filter")
+
+    jenis_filter = st.selectbox(
+        "Jenis Program",
+        ["Semua"] + list(df["Jenis"].unique())
+    )
+
+    penyelenggara_filter = st.selectbox(
+        "Penyelenggara",
+        ["Semua"] + list(df["Penyelenggara"].unique())
+    )
+
+    status_filter = st.selectbox(
+        "Status",
+        ["Semua"] + list(df["Status"].unique())
+    )
+
+# =====================================================
+# FILTER DATA
+# =====================================================
+
+filtered = df.copy()
+
+if jenis_filter != "Semua":
+    filtered = filtered[
+        filtered["Jenis"] == jenis_filter
+    ]
+
+if penyelenggara_filter != "Semua":
+    filtered = filtered[
+        filtered["Penyelenggara"] == penyelenggara_filter
+    ]
+
+if status_filter != "Semua":
+    filtered = filtered[
+        filtered["Status"] == status_filter
+    ]
 
 # =====================================================
 # HEADER
@@ -126,72 +178,89 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =====================================================
-# FILTER
+# DIALOG TAMBAH PROGRAM
 # =====================================================
 
-filtered = df.copy()
+@st.dialog("Tambah Program")
+def tambah_program():
 
-if jenis != "Semua":
-    filtered = filtered[filtered["Jenis"] == jenis]
+    st.text_input("Nama Program")
 
-if penyelenggara != "Semua":
-    filtered = filtered[
-        filtered["Penyelenggara"] == penyelenggara
-    ]
+    st.selectbox(
+        "Jenis Program",
+        [
+            "Pelatihan",
+            "Sertifikasi",
+            "Beasiswa"
+        ]
+    )
 
-if status != "Semua":
-    filtered = filtered[
-        filtered["Status"] == status
-    ]
+    st.text_input("Penyelenggara")
+
+    st.selectbox(
+        "Status Pendaftaran",
+        [
+            "Sedang Dibuka",
+            "Akan Dibuka",
+            "Ditutup"
+        ]
+    )
+
+    st.text_input("Link Pendaftaran")
+
+    st.text_area("Deskripsi Program")
+
+    if st.button("Simpan"):
+        st.success("Program berhasil ditambahkan")
 
 # =====================================================
-# METRIC CARD
+# METRIC
 # =====================================================
 
-c1,c2,c3,c4 = st.columns(4)
+c1, c2, c3, c4 = st.columns(4)
 
 with c1:
     st.markdown(f"""
     <div class="metric-card">
-    <div class="metric-title">TOTAL PROGRAM</div>
-    <div class="metric-value">{len(filtered)}</div>
+        <div class="metric-title">TOTAL PROGRAM</div>
+        <div class="metric-value">{len(filtered)}</div>
     </div>
     """, unsafe_allow_html=True)
 
 with c2:
     st.markdown(f"""
     <div class="metric-card">
-    <div class="metric-title">TOTAL BEASISWA</div>
-    <div class="metric-value">
-    {len(filtered[filtered["Jenis"]=="Beasiswa"])}
-    </div>
+        <div class="metric-title">TOTAL BEASISWA</div>
+        <div class="metric-value">
+            {len(filtered[filtered["Jenis"]=="Beasiswa"])}
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
 with c3:
     st.markdown(f"""
     <div class="metric-card">
-    <div class="metric-title">TOTAL SERTIFIKASI</div>
-    <div class="metric-value">
-    {len(filtered[filtered["Jenis"]=="Sertifikasi"])}
-    </div>
+        <div class="metric-title">TOTAL SERTIFIKASI</div>
+        <div class="metric-value">
+            {len(filtered[filtered["Jenis"]=="Sertifikasi"])}
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
 with c4:
     st.markdown(f"""
     <div class="metric-card">
-    <div class="metric-title">TOTAL PELATIHAN</div>
-    <div class="metric-value">
-    {len(filtered[filtered["Jenis"]=="Pelatihan"])}
-    </div>
+        <div class="metric-title">TOTAL PELATIHAN</div>
+        <div class="metric-value">
+            {len(filtered[filtered["Jenis"]=="Pelatihan"])}
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
 st.write("")
 
 # =====================================================
-# CHART AREA
+# CHART
 # =====================================================
 
 left, right = st.columns([1,3])
@@ -200,7 +269,7 @@ with left:
 
     st.markdown("""
     <div class="small-status">
-        <h3 align="center">STATUS PENDAFTARAN</h3>
+    <h3 align="center">STATUS PENDAFTARAN</h3>
     </div>
     """, unsafe_allow_html=True)
 
@@ -241,7 +310,7 @@ with right:
     )
 
     fig.update_layout(
-        height=300,
+        height=350,
         showlegend=False
     )
 
@@ -259,44 +328,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# =====================================================
-# DIALOG TAMBAH PROGRAM
-# =====================================================
-
-@st.dialog("Tambah Program")
-def tambah_program():
-
-    nama = st.text_input("Nama Program")
-
-    jenis = st.selectbox(
-        "Jenis Program",
-        ["Pelatihan", "Sertifikasi", "Beasiswa"]
-    )
-
-    penyelenggara = st.text_input(
-        "Penyelenggara"
-    )
-
-    status = st.selectbox(
-        "Status Pendaftaran",
-        [
-            "Sedang Dibuka",
-            "Akan Dibuka",
-            "Ditutup"
-        ]
-    )
-
-    link = st.text_input(
-        "Link Pendaftaran"
-    )
-
-    deskripsi = st.text_area(
-        "Deskripsi Program"
-    )
-
-    if st.button("Simpan"):
-        st.success("Program berhasil ditambahkan")
-        
 for _, row in filtered.iterrows():
 
     col1, col2 = st.columns([5,1])
@@ -318,10 +349,15 @@ for _, row in filtered.iterrows():
 
         st.button(
             "DETAIL",
-            key=row["Program"],
+            key=f"detail_{row['Program']}",
             use_container_width=True
         )
 
+# =====================================================
+# TOMBOL TAMBAH PROGRAM
+# =====================================================
+
+st.write("")
 st.write("")
 
 col1, col2, col3 = st.columns([1,3,1])
@@ -330,7 +366,6 @@ with col2:
 
     if st.button(
         "➕ TAMBAH PROGRAM",
-        use_container_width=True,
-        type="secondary"
+        use_container_width=True
     ):
         tambah_program()
