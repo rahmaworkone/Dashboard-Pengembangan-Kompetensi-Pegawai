@@ -14,60 +14,153 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-.main {
-    background-color: #f5f5f5;
+/* =========================
+   BACKGROUND APP
+========================= */
+
+.stApp{
+    background: #F4F7FC;
 }
 
-.block-container {
-    padding-top: 1rem;
+/* =========================
+   CONTAINER
+========================= */
+
+.block-container{
+    padding-top:1rem;
+    padding-left:2rem;
+    padding-right:2rem;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 .title-box{
-    background:#d9d9d9;
-    padding:20px;
+    background:white;
+    border-radius:20px;
+    padding:25px;
     text-align:center;
-    margin-bottom:20px;
+    margin-bottom:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
+.title-box h1{
+    color:#1E3A8A;
+    font-size:34px;
+    margin-bottom:5px;
+}
+
+.title-box h2{
+    color:#64748B;
+    font-size:18px;
+    font-weight:500;
+}
+
+/* =========================
+   CARD STATISTIK
+========================= */
+
 .metric-card{
-    background:#bdbdbd;
-    padding:20px;
+    background:white;
+    padding:25px;
+    border-radius:18px;
     text-align:center;
-    border-radius:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    border:1px solid #E2E8F0;
 }
 
 .metric-title{
-    font-size:18px;
-    font-weight:bold;
+    color:#64748B;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:10px;
 }
 
 .metric-value{
-    font-size:42px;
-    font-weight:bold;
+    color:#2563EB;
+    font-size:38px;
+    font-weight:700;
 }
 
-.program-card{
-    background:#bdbdbd;
-    padding:20px;
-    border-radius:8px;
-    margin-bottom:15px;
-}
+/* =========================
+   STATUS CARD
+========================= */
 
 .small-status{
-    background:#bdbdbd;
-    padding:15px;
-    border-radius:8px;
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    border:1px solid #E2E8F0;
 }
 
-div[data-testid="stSidebar"]{
-    background-color:#e5e5e5;
+/* =========================
+   PROGRAM CARD
+========================= */
+
+.program-card{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    border:1px solid #E2E8F0;
 }
 
-div.stButton > button {
-    height:60px;
-    border-radius:15px;
-    font-size:20px;
+.program-card h3{
+    color:#1E293B;
+    margin-bottom:10px;
+}
+
+.program-card p{
+    color:#64748B;
+    line-height:1.7;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+section[data-testid="stSidebar"]{
+    background:#FFFFFF;
+    border-right:1px solid #E2E8F0;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+div.stButton > button{
+    background:#2563EB;
+    color:white;
+    border:none;
+    border-radius:12px;
+    height:50px;
     font-weight:600;
+}
+
+div.stButton > button:hover{
+    background:#1D4ED8;
+    color:white;
+}
+
+/* =========================
+   SELECTBOX
+========================= */
+
+div[data-baseweb="select"]{
+    border-radius:10px;
+}
+
+/* =========================
+   PLOTLY CHART
+========================= */
+
+.js-plotly-plot{
+    background:white;
+    border-radius:18px;
+    padding:10px;
 }
 
 </style>
