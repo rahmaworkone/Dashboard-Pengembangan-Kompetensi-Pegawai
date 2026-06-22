@@ -38,7 +38,7 @@ st.markdown("""
 
 .title-box{
     background:white;
-    border-radius:20px;
+    border-radius:15px;
     padding:30px;
     text-align:center;
     margin-bottom:25px;
@@ -67,7 +67,7 @@ st.markdown("""
 .metric-card{
     background:white;
     padding:25px;
-    border-radius:18px;
+    border-radius:15px;
     text-align:center;
     box-shadow:0 4px 12px rgba(0,0,0,0.08);
     border:1px solid #E2E8F0;
@@ -92,7 +92,7 @@ st.markdown("""
 
 .small-status{
     background:white;
-    border-radius:18px;
+    border-radius:15px;
     padding:20px;
     box-shadow:0 4px 12px rgba(0,0,0,0.08);
     border:1px solid #E2E8F0;
@@ -104,7 +104,7 @@ st.markdown("""
 
 .program-card{
     background:white;
-    border-radius:18px;
+    border-radius:15px;
     padding:20px;
     margin-bottom:15px;
     box-shadow:0 4px 12px rgba(0,0,0,0.08);
@@ -138,7 +138,7 @@ div.stButton > button{
     background:#2563EB;
     color:white;
     border:none;
-    border-radius:12px;
+    border-radius:15px;
     height:50px;
     font-weight:600;
 }
@@ -153,7 +153,7 @@ div.stButton > button:hover{
 ========================= */
 
 div[data-baseweb="select"]{
-    border-radius:10px;
+    border-radius:15px;
 }
 
 /* =========================
@@ -162,7 +162,7 @@ div[data-baseweb="select"]{
 
 .js-plotly-plot{
     background:white;
-    border-radius:18px;
+    border-radius:15px;
     padding:10px;
 }
 
