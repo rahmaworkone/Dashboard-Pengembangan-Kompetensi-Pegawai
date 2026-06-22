@@ -4,6 +4,10 @@ import plotly.express as px
 
 st.set_page_config(page_title="Dashboard Kompetensi", layout="wide",initial_sidebar_state="expanded")
 
+st.markdown("""
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+""", unsafe_allow_html=True)
+
 # =========================
 # CSS
 # =========================
@@ -25,17 +29,27 @@ st.markdown("""
 }
 
 section[data-testid="stSidebar"]{
-    min-width: 220px !important;
-    max-width: 220px !important;
+
+    min-width:280px !important;
+    max-width:280px !important;
+
+    background:
+    linear-gradient(
+        180deg,
+        #020617,
+        #0F172A
+    );
+}
+
+section[data-testid="stSidebar"] .block-container{
+    padding-top:12px;
+    padding-left:12px;
+    padding-right:12px;
 }
 
 .block-container{
     padding-top:1rem;
     max-width:1450px;
-}
-
-section[data-testid="stSidebar"]{
-    background:linear-gradient(180deg,#020617,#0F172A);
 }
 
 .title-box{
@@ -72,6 +86,15 @@ section[data-testid="stSidebar"]{
     font-weight:bold;
 }
 
+div.stButton > button{
+
+    border-radius:14px;
+
+    height:50px;
+
+    font-weight:600;
+}
+
 .panel{
     background:rgba(15,23,42,.75);
     border:1px solid rgba(99,102,241,.15);
@@ -98,12 +121,18 @@ section[data-testid="stSidebar"]{
 }
 
 .filter-title{
+
     display:flex;
     align-items:center;
+
     gap:10px;
+
     color:#8B5CF6;
-    font-size:28px;
+
+    font-size:24px;
     font-weight:700;
+
+    margin-bottom:24px;
 }
 
 .filter-title .material-icons{
@@ -111,16 +140,21 @@ section[data-testid="stSidebar"]{
 }
 
 .filter-card{
-    background:rgba(15,23,42,.75);
 
-    border:1px solid rgba(99,102,241,.2);
+    background:
+    rgba(15,23,42,.75);
+
+    border:
+    1px solid rgba(99,102,241,.2);
 
     border-radius:24px;
 
-    padding:24px;
+    padding:22px;
 
     box-shadow:
-        0 0 30px rgba(59,130,246,.08);
+    0 0 30px rgba(59,130,246,.08);
+
+    margin-top:4px;
 }
 
 </style>
@@ -145,27 +179,55 @@ def tambah_program():
     st.button("Simpan")
 
 with st.sidebar:
+
     st.markdown("""
     <div class="filter-card">
+
+        <div class="filter-title">
+            <span class="material-icons">tune</span>
+            FILTER
+        </div>
+
     """, unsafe_allow_html=True)
 
-    st.markdown("""
-    <div class="filter-title">
-        <span class="material-icons">tune</span>
-        FILTER
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown("""
-    </div>
-    """, unsafe_allow_html=True)
-    jenis = st.selectbox("Jenis Program",["Semua"]+list(df["Jenis"].unique()))
-    peny = st.selectbox("Penyelenggara",["Semua"]+list(df["Penyelenggara"].unique()))
-    status = st.selectbox("Status",["Semua"]+list(df["Status"].unique()))
-    urut = st.selectbox("Urutkan",["A-Z","Z-A"])
-    st.button("🔎 Terapkan Filter", use_container_width=True)
+    jenis = st.selectbox(
+        "Jenis Program",
+        ["Semua"] + list(df["Jenis"].unique())
+    )
 
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
-    if st.button("➕ TAMBAH PROGRAM", use_container_width=True):
+    peny = st.selectbox(
+        "Penyelenggara",
+        ["Semua"] + list(df["Penyelenggara"].unique())
+    )
+
+    status = st.selectbox(
+        "Status",
+        ["Semua"] + list(df["Status"].unique())
+    )
+
+    urut = st.selectbox(
+        "Urutkan",
+        ["A-Z", "Z-A"]
+    )
+
+    st.button(
+        "🔎 TERAPKAN FILTER",
+        use_container_width=True
+    )
+
+    st.markdown("""
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown(
+        "<div style='height:260px'></div>",
+        unsafe_allow_html=True
+    )
+
+    if st.button(
+        "➕ TAMBAH PROGRAM",
+        use_container_width=True
+    ):
         tambah_program()
 
 filtered = df.copy()
@@ -202,7 +264,7 @@ for col, card in zip([c1,c2,c3,c4], cards):
         </div>
         """, unsafe_allow_html=True)
 
-left,right = st.columns([1,3])
+left,right = st.columns([1.2,3.8])
 
 with left:
     st.markdown('<div class="panel"><h3 style="color:white">STATUS PENDAFTARAN</h3>', unsafe_allow_html=True)
@@ -217,6 +279,7 @@ with right:
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         font_color="white"
+        height=320
     )
     st.plotly_chart(fig, use_container_width=True)
 
