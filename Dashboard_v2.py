@@ -278,7 +278,7 @@ with right:
     fig.update_layout(
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        font_color="white"
+        font_color="white",
         height=320
     )
     st.plotly_chart(fig, use_container_width=True)
