@@ -126,49 +126,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =====================================================
-# SIDEBAR
-# =====================================================
-
-with st.sidebar:
-
-    st.subheader("🎓 Jenis Pengembangan Kompetensi")
-
-    jenis = st.selectbox(
-        "Pilih Skema",
-        ["Semua"] + list(df["Jenis"].unique())
-    )
-
-    metode = st.selectbox(
-        "Metode Pelaksanaan",
-        ["Semua","Online","Offline","Hybrid"]
-    )
-
-    penyelenggara = st.selectbox(
-        "Penyelenggara",
-        ["Semua"] + list(df["Penyelenggara"].unique())
-    )
-
-    status = st.selectbox(
-        "Status Pendaftaran",
-        ["Semua"] + list(df["Status"].unique())
-    )
-
-    st.markdown("---")
-
-    urutan = st.radio(
-        "Urutkan Berdasarkan",
-        [
-            "Nama A-Z",
-            "Nama Z-A"
-        ]
-    )
-
-    st.markdown("---")
-
-    if st.button("➕ TAMBAH PROGRAM", use_container_width=True):
-        st.switch_page
-
-# =====================================================
 # FILTER
 # =====================================================
 
@@ -302,6 +259,44 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# =====================================================
+# DIALOG TAMBAH PROGRAM
+# =====================================================
+
+@st.dialog("Tambah Program")
+def tambah_program():
+
+    nama = st.text_input("Nama Program")
+
+    jenis = st.selectbox(
+        "Jenis Program",
+        ["Pelatihan", "Sertifikasi", "Beasiswa"]
+    )
+
+    penyelenggara = st.text_input(
+        "Penyelenggara"
+    )
+
+    status = st.selectbox(
+        "Status Pendaftaran",
+        [
+            "Sedang Dibuka",
+            "Akan Dibuka",
+            "Ditutup"
+        ]
+    )
+
+    link = st.text_input(
+        "Link Pendaftaran"
+    )
+
+    deskripsi = st.text_area(
+        "Deskripsi Program"
+    )
+
+    if st.button("Simpan"):
+        st.success("Program berhasil ditambahkan")
+        
 for _, row in filtered.iterrows():
 
     col1, col2 = st.columns([5,1])
@@ -326,3 +321,16 @@ for _, row in filtered.iterrows():
             key=row["Program"],
             use_container_width=True
         )
+
+st.write("")
+
+col1, col2, col3 = st.columns([1,3,1])
+
+with col2:
+
+    if st.button(
+        "➕ TAMBAH PROGRAM",
+        use_container_width=True,
+        type="secondary"
+    ):
+        tambah_program()
