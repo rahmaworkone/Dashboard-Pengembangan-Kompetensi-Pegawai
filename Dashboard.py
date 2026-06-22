@@ -330,29 +330,13 @@ def tambah_program():
     st.button("Simpan")
 
 # =====================================================
-# HEADER
-# =====================================================
-
-with right_col:
-
-    st.markdown("""
-    <div class="title-box">
-    <h1>
-    DASHBOARD PENGEMBANGAN KOMPETENSI PEGAWAI
-    <br>
-    BIRO KEUANGAN DAN BARANG MILIK NEGARA
-    </h1>
-    </div>
-    """, unsafe_allow_html=True)
-
-# =====================================================
 # LAYOUT
 # =====================================================
 
 left_col, right_col = st.columns([1.15,4])
 
 # =====================================================
-# FILTER PANEL
+# FILTER_PANEL
 # =====================================================
 
 with left_col:
@@ -399,6 +383,22 @@ with left_col:
             use_container_width=True
         ):
             tambah_program()
+
+# =====================================================
+# MAIN_DASHBOARD
+# =====================================================
+
+with right_col:
+
+    st.markdown("""
+    <div class="title-box">
+    <h1>
+    DASHBOARD PENGEMBANGAN KOMPETENSI PEGAWAI
+    <br>
+    BIRO KEUANGAN DAN BARANG MILIK NEGARA
+    </h1>
+    </div>
+    """, unsafe_allow_html=True)
 # =====================================================
 # FILTER DATA
 # =====================================================
