@@ -19,7 +19,12 @@ st.markdown("""
 ========================= */
 
 .stApp{
-    background: #0F172A;
+    background: linear-gradient(
+        135deg,
+        #0F172A 0%,
+        #111827 50%,
+        #1E1B4B 100%
+    );
 }
 
 /* =========================
@@ -37,27 +42,14 @@ st.markdown("""
 ========================= */
 
 .title-box{
-    background:white;
-    border-radius:15px;
+    background:#1E293B;
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
     padding:30px;
-    text-align:center;
-    margin-bottom:25px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
 .title-box h1{
-    color:#1E3A8A;
-    font-size:28px;
-    font-weight:700;
-    margin-bottom:8px;
-}
-
-.title-box h2{
-    color:#1E3A8A;
-    font-size:28px;
-    font-weight:700;
-    margin-top:0;
-    margin-bottom:0;
+    color:#FFFFFF;
 }
 
 /* =========================
@@ -65,25 +57,22 @@ st.markdown("""
 ========================= */
 
 .metric-card{
-    background:white;
+    background:linear-gradient(
+        135deg,
+        #8B5CF6,
+        #3B82F6
+    );
+    border:none;
+    border-radius:20px;
     padding:25px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    border:1px solid #E2E8F0;
 }
 
 .metric-title{
-    color:#64748B;
-    font-size:14px;
-    font-weight:600;
-    margin-bottom:10px;
+    color:white;
 }
 
 .metric-value{
-    color:#2563EB;
-    font-size:38px;
-    font-weight:700;
+    color:white;
 }
 
 /* =========================
@@ -103,22 +92,17 @@ st.markdown("""
 ========================= */
 
 .program-card{
-    background:white;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:15px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    border:1px solid #E2E8F0;
+    background:#1E293B;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;
 }
 
 .program-card h3{
-    color:#1E293B;
-    margin-bottom:10px;
+    color:white;
 }
 
 .program-card p{
-    color:#64748B;
-    line-height:1.7;
+    color:#CBD5E1;
 }
 
 /* =========================
@@ -126,8 +110,8 @@ st.markdown("""
 ========================= */
 
 section[data-testid="stSidebar"]{
-    background:#FFFFFF;
-    border-right:1px solid #E2E8F0;
+    background:#111827;
+    border-right:1px solid rgba(255,255,255,0.1);
 }
 
 /* =========================
@@ -135,7 +119,11 @@ section[data-testid="stSidebar"]{
 ========================= */
 
 div.stButton > button{
-    background:#2563EB;
+    background:linear-gradient(
+    135deg,
+    #8B5CF6,
+    #06B6D4
+);
     color:white;
     border:none;
     border-radius:15px;
@@ -144,7 +132,11 @@ div.stButton > button{
 }
 
 div.stButton > button:hover{
-    background:#1D4ED8;
+    background:linear-gradient(
+    135deg,
+    #7C3AED,
+    #0891B2
+);
     color:white;
 }
 
@@ -409,10 +401,17 @@ with right:
     )
 
     fig.update_layout(
-        height=350,
-        showlegend=False
+    height=350,
+    showlegend=False,
+    paper_bgcolor="#1E293B",
+    plot_bgcolor="#1E293B",
+    font_color="white"
     )
 
+    fig.update_traces(
+    marker_color="#8B5CF6"
+    )
+    
     st.plotly_chart(
         fig,
         use_container_width=True
