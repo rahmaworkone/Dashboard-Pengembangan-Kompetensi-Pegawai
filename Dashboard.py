@@ -478,7 +478,7 @@ with right:
         r=20,
         t=30,
         b=20
-    )
+    ))
 
     fig.update_traces(
     marker_color="#2563EB"
