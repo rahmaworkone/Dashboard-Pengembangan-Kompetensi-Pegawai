@@ -472,7 +472,7 @@ with right:
     showlegend=False,
     paper_bgcolor="white",
     plot_bgcolor="white",
-    font_color="#334155"
+    font_color="#334155",
     margin=dict(
         l=20,
         r=20,
