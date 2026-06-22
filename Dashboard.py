@@ -19,7 +19,7 @@ st.markdown("""
 ========================= */
 
 .stApp{
-    background: #F4F7FC;
+    background: #1591DC;
 }
 
 /* =========================
