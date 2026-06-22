@@ -239,7 +239,6 @@ for col, card in zip([c1,c2,c3,c4], cards):
             <div class="metric-title">{card[0]}</div>
             <div class="metric-value">{card[1]}</div>
         </div>
-        """, unsafe_allow_html=True)
 
 left,right = st.columns([1.2,3.8])
 
