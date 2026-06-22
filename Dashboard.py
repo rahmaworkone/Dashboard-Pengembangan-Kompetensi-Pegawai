@@ -85,24 +85,6 @@ st.markdown("""
    FILTER PANEL
 ===================================================== */
 
-.filter-panel{
-
-    background:
-    rgba(15,23,42,.85);
-
-    border:
-    1px solid rgba(99,102,241,.15);
-
-    border-radius:24px;
-
-    padding:20px;
-
-    min-height:850px;
-
-    box-shadow:
-    0 0 30px rgba(59,130,246,.08);
-}
-
 .filter-title{
 
     color:#8B5CF6;
@@ -375,60 +357,48 @@ filter_col, main_col = st.columns(
 
 with filter_col:
 
-    st.markdown(
-        '<div class="filter-panel">',
-        unsafe_allow_html=True
-    )
+    filter_box = st.container(border=True)
 
-    st.markdown(
-        '<div class="filter-title">🎛 FILTER</div>',
-        unsafe_allow_html=True
-    )
+    with filter_box:
 
-    jenis = st.selectbox(
-        "Jenis Program",
-        ["Semua"] + list(df["Jenis"].unique())
-    )
+        st.markdown("""
+        <div class="filter-title">
+        🎛 FILTER
+        </div>
+        """, unsafe_allow_html=True)
 
-    peny = st.selectbox(
-        "Penyelenggara",
-        ["Semua"] + list(df["Penyelenggara"].unique())
-    )
+        jenis = st.selectbox(
+            "Jenis Program",
+            ["Semua"] + list(df["Jenis"].unique())
+        )
 
-    status = st.selectbox(
-        "Status",
-        ["Semua"] + list(df["Status"].unique())
-    )
+        peny = st.selectbox(
+            "Penyelenggara",
+            ["Semua"] + list(df["Penyelenggara"].unique())
+        )
 
-    urut = st.selectbox(
-        "Urutkan",
-        [
-            "A-Z",
-            "Z-A"
-        ]
-    )
+        status = st.selectbox(
+            "Status",
+            ["Semua"] + list(df["Status"].unique())
+        )
 
-    st.button(
-        "🔎 Terapkan Filter",
-        use_container_width=True
-    )
+        urut = st.selectbox(
+            "Urutkan",
+            ["A-Z", "Z-A"]
+        )
 
-    st.markdown(
-        "<div style='height:320px'></div>",
-        unsafe_allow_html=True
-    )
+        st.button(
+            "🔎 Terapkan Filter",
+            use_container_width=True
+        )
 
-    if st.button(
-        "➕ Tambah Program",
-        use_container_width=True
-    ):
-        tambah_program()
+        st.markdown("<br><br><br><br><br><br>", unsafe_allow_html=True)
 
-    st.markdown(
-        "</div>",
-        unsafe_allow_html=True
-    )
-
+        if st.button(
+            "➕ Tambah Program",
+            use_container_width=True
+        ):
+            tambah_program()
 # =====================================================
 # FILTER DATA
 # =====================================================
