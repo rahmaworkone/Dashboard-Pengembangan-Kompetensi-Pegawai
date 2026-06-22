@@ -20,6 +20,7 @@ st.markdown("""
     #020617;
 }
 
+
 [data-testid="stSidebarNav"] {
     display: none;
 }
@@ -42,6 +43,17 @@ section[data-testid="stSidebar"]{
 
     border-right:
     1px solid rgba(99,102,241,.2);
+}
+
+div[data-testid="stSelectbox"] label {
+
+    color: #E2E8F0 !important;
+
+    font-size: 15px !important;
+
+    font-weight: 600 !important;
+
+    margin-bottom: 6px !important;
 }
 
 section[data-testid="stSidebar"] .block-container{
@@ -131,45 +143,6 @@ div.stButton > button{
     color:white;
 }
 
-.filter-title{
-
-    display:flex;
-    align-items:center;
-
-    gap:10px;
-
-    color:#8B5CF6;
-
-    font-size:24px;
-    font-weight:700;
-
-    margin-bottom:24px;
-}
-
-.filter-title .material-icons{
-    font-size:28px;
-}
-
-.filter-card{
-
-    background:
-    rgba(15,23,42,.75);
-
-    border:
-    1px solid rgba(99,102,241,.2);
-
-    border-radius:24px;
-
-    padding:22px;
-
-    box-shadow:
-    0 0 30px rgba(59,130,246,.08);
-
-    margin-top:4px;
-}
-
-</style>
-""", unsafe_allow_html=True)
 
 # data dummy
 df = pd.DataFrame({
